@@ -5,8 +5,9 @@ The input files needed are:
 
 INPUT
 =====
+solv_input.dat
 sol_sites.dat
-solv_sites.dat
+gro.itp
 
 TINKER MD
 =========
