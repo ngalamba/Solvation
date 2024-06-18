@@ -1,0 +1,48 @@
+GROMACS                              !xyz trj input format type [TINKER, GROMACS, BOMD 7 characters max.] 
+AMBER                                !Force field name [GROMOS, AMBER, AMOEBA, etc 9 characters max.]
+md_trj.xtc                           !trajectory [.xtc, .arc or .xyz - 15 characters max; e.g. umbrella153.xtc] [filename is md_trj.xtc for msd calculation]
+0                                    !0: unfold trajectory for msd calculation; 1: do not unfold trajectory
+gro.itp                              !system topology [.top or .itp - 15 characters max] [GROMACS gro.top; only for solutions]
+LJ126.itp                            !Lennard-Jones parm for the solute force field; 
+58 325        out of 1539            !Nb of distinct atom types in the ffield file for reading C6 and C12 (ffnonbonded.itp);Nb of crossed IJ parameters [ nonbond_params ] 
+tinkbox.ang                          !MD box side lenghts (Ang) input file name - NPT ensemble - only TINKER/AMOEBA and BOMD MD type
+1                                    !system 0: pure water; 1: solute and water system
+1                                    !ensemble: 0: NVE, NVT; 1: NPT - read MD box side lenght (Ang)
+0.0d0 0.0d0 0.0d0                    !MD box side length (Ang) - NVE/NVT ensembles - only TINKER/AMOEBA and BOMD type
+30                    !300000       !number of frames in the input file (HgbS: max virtual memory 700 000 ~ 8gb ram)
+1.0d0                                !time-step in fs
+100                                  !number of time-steps between frames (HgbS: 2)
+!solutions only                      !comment line
+1 1231                               !number of solute molecules, number of atoms per solute molecule (HgbS: 1 11600 )
+TIP4PEW                                 !water model used for solutions - this is required to calculate pair interaction energies in the HSh (SPCE, TIP4PEW, TIP4P05)
+450  4      !83058                     !number of water molecules; number of water sites (SPC/E = 3; TIP4P-Ew = 4) (HgbS: 160229 3) 
+0        !8                          !number of ions in solution (cations + anions)
+1 10 10.0                             !0: do not calc. 1: calc. bio-bulk water histogram; sample freq. (steps); bio water cut off (Ang)
+0 20 10 0.0001d0                     !0: do not calc. 1: calc. radial reor. tcfs; delay time (ps); OH sample freq. (steps); bulk water dist. onset (0.0 bulk is neglected) 
+0 20 100       !not coded            !0: do not calc. 1: calc. HB cont. and interm. tcfs; time-frame ps (delay time);sample freq. (steps)
+0 10 0.0d0                           !0: do not calc. 1: calc. water tetrahedrality; sample freq. (steps); bulk water dist. onset (Ang) (0.0 bulk is neglected) 
+0 100 0.0d0                          !0: do not calc. 1: calc. water-solute tetrahedrality; sample freq. (steps); bulk water dist. onset (Ang) (0.0 bulk is neglected) 
+0 20 10.0D0                          !0: do not calc. 1: calc. water LSI; sample freq. (steps); bulk water dist. onset (Ang) (0.0 bulk is neglected)
+0 25 10.0                            !0: do not calc. 1: calc. prot-prot contact map; sample freq. for contacts (steps);max dist for prot-prot contacts    
+0 0 1 5           ![continue]        !0: do not calc. 1: calc. prot-prot interacts map; 1: Umbrella trjs 0: No Umbrella trjs;  nb traj.; sample freq. for interactions   
+5000 150.0 0      ![continue]        !sample freq. for contacts (steps);max dist for prot-prot contacts;0: do not apply MIC 1: apply MIC;
+-140.0 130.0      ![continue]        !Potential Energy threshold [min-max] (kJ/mol)
+-3.75 100.0       ![end]             !vdW Energy threshold [min-max] (kJ/mol)
+0 0 5             ![continue]        !0: do not calc. 1: calc. protein-water and/or water-water PE; 0: do not apply MIC 1: apply MIC;sample freq. for interactions;
+1 0               ![end]             !calc. protein-water PE YES (1) No(0);calc. water-water PE YES (1) No(0) 
+0 1000 100 15.0d0                    !0: do not calc. 1: calc. water msd for Einstein diffusion; delay time (ps); sample freq. (steps); bulk water dist. onset (Ang) 
+0 10                                 !0: do not print 1: print vmd trj; print snapshots frequency (in time-steps)
+!pure water only                     !comment line (not red unless system = 0)
+1000 4                                !Number of waters, nb water sites
+0.0d0 0.0d0 0.0d0                    !L(Ang) if NVE/NVT - only TINKER/AMOEBA and BOMD type
+0 15 10000 4 1      ![continue]      !0: do not calc. 1: calc. otcfs for pure water; delay time (ps); sample freq. (steps);Nb of environ; 0: Read [List_W.dat] 1: on the fly
+0.0 0.01 0.01 0.02  ![end]           !LSI threshold values used for otcfs [LDL 0.17-1.0 ; HDL 0.0-0.01]
+0 5 5000 6 1        !5 ps Lists      !0: do not calc. 1: calc. otcfs for pure water; delay time(ps); sample freq.(steps);Nb of envir = 6; 0: Read [List_W.dat] 1: on the fly - HB deconv
+0 2 5000 3          ![continue]      !0: do not calc. 1: calc. HB cont. and interm. tcfs for pure water; delay time (ps); sample freq. (steps) ;Nb of environ;
+0.0 0.01 0.17 1.0   ![end]           !LSI threshold values used for otcfs [LDL 0.17-1.0 ; HDL 0.0-0.01]
+0 5 5000 3          ![continue]      !0: do not calc. 1: calc. LSI cont. and interm. tcfs for pure water; delay time (ps); sample freq. (steps) ;Nb of environ;                         
+0.0 0.01 0.17 1.0   ![end]           !LSI threshold values used for otcfs [LDL 0.17-1.0 ; HDL 0.0-0.01]
+0 1000 3 3.7                           !0: do not calc. 1: calc. water tetrahedrality; sample freq. (steps);;Nb of environms [>=1; 1 or 3]; RO5 cut-off (Ang)
+0 20 9.0                               !0:do not calculate Voronoi 1: calculate Voronoi; sample freq. (steps); cut-off for neighbor search (Ang)
+0 1000 200 4 3.7                      !0: do not calc. 1: calc. water msd for Einstein diffus; delay time (ps); sample freq. (steps);Nb of environms 1 or 4 [List_W.dat]; RO5 cut-off (Ang)
+0                                    !0:do not print 1:print gaussian QMMM configurations

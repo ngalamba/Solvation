@@ -1,0 +1,26 @@
+Program Solvation
+*****************
+
+The input files needed are:
+
+INPUT
+=====
+sol_sites.dat
+solv_sites.dat
+
+TINKER MD
+=========
+tinkcart.arc - formatted trajectory xyz
+tinkbox.ang
+
+GROMACS MD
+==========
+gromacs.top or .itp       
+gromacs.xtc
+gromacs.gro          - at time zero - only for diffusion calculation - used to unfold the trajectory
+
+Einstein diffusion requires the following file names:
+
+md_trj.xtc and md.gro
+
+February 2017

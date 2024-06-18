@@ -1,0 +1,17 @@
+!Comment: Solute parameters (Val solvation)
+76                         !number of residues (HgbS: 1156)
+5                         !number of different solute atom types (HgbS: C, H, O, N, and Fe )
+S 32.065                  ! Sulphur
+O 15.999                  ! Oxygen
+N 14.007                  ! Nitrogen
+C 12.0110d0               !solute: symbol carbon (C), mass             !gromos masses
+H 1.00800d0               !solute: symbol hydrogen (H), mass
+0                         !number of different ion types
+1                         !number of protein chains (e.g., HgbS = 8: 4 alpha and 4 beta)
+1231 A 76                 !!number of atoms as in topol for chain 1; chain label A; number of residues of chain A
+0                         !number of atomic centers to analyze the HSh 
+1   0.0  5.3              !atomic centers to analyze the HSh; range [0 - Rmax Ang]
+2   0.0  5.3
+3   0.0  5.3
+4   0.0  5.3
+5   0.0  5.3
